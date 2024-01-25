@@ -23,3 +23,6 @@ networks:
 
 # run only dev-database
 # docker compose up -d dev-database -d
+
+#remove container + volume
+# docker compose rm dev-database --stop --force --volumes

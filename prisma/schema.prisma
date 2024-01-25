@@ -11,20 +11,26 @@ datasource db {
 }
 
 model User {
-  id        Int   @id @default(autoincrement())
-  email     String   @unique
-  hashedPassword String
-  fullName String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                Int   @id @default(autoincrement())
+  email             String   @unique
+  hashedPassword    String
+  fullName          String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  notes             Note[]
+
+  @@map("users") // this is the name of the table in the database
 }
 
 model Note {
-  id        Int   @id @default(autoincrement())
-  title     String
-  description String
-  url String
-  // other fields ....
+  id                Int   @id @default(autoincrement())
+  title             String
+  description       String?   // ? means optional
+  url               String?   // optional
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  userId            Int       // foreign key
+  user              User      @relation(fields: [userId], references: [id])
+
+  @@map("notes") // this is the name of the table in the database
 }
