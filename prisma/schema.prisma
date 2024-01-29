@@ -17,6 +17,7 @@ model User {
   fullName          String
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
+  delFlag           Int      @default(0)
   notes             Note[]
 
   @@map("users") // this is the name of the table in the database
@@ -30,6 +31,7 @@ model Note {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId            Int       // foreign key
+  delFlag           Int       @default(0)
   user              User      @relation(fields: [userId], references: [id])
 
   @@map("notes") // this is the name of the table in the database

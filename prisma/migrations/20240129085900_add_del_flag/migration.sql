@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "notes" ADD COLUMN     "delFlag" INTEGER NOT NULL DEFAULT 0;
+
+-- AlterTable
+ALTER TABLE "users" ADD COLUMN     "delFlag" INTEGER NOT NULL DEFAULT 0;
