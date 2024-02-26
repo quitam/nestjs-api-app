@@ -8,15 +8,23 @@ services:
       POSTGRES_PASSWORD: Abc12345
       POSTGRES_DB: postgres
     ports:
-      - 5434:5432
+      - 5432:5432
     networks:
       - nestjs-network
   app:
     image: node:20.11.1
     container_name: nestjs-app
-    command: yarn start
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command:
+      - 'sh'
+      - '-c'
+      - 'yarn && sleep 2 && yarn start'
     ports:
       - 5000:5000
+    networks:
+      - nestjs-network
 networks:
   nestjs-network:
 # -d: run in background
