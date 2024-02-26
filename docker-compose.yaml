@@ -11,9 +11,14 @@ services:
       - 5434:5432
     networks:
       - nestjs-network
+  app:
+    image: node:20.11.1
+    container_name: nestjs-app
+    command: yarn start
+    ports:
+      - 5000:5000
 networks:
   nestjs-network:
-
 # -d: run in background
 
 # docker compose up -d
