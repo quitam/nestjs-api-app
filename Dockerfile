@@ -3,20 +3,19 @@ FROM node:20.11.1
 # Create app directory
 WORKDIR /app
 
-# Copy package.json
-COPY package*.json ./
-
-# Install app dependencies
-RUN yarn
-
 # Bundle app source
 COPY . .
 
+# Run prisma:dev:deploy
+RUN ls -la
+
 # Build the app
-RUN yarn build
+# RUN yarn build
 
 # Expose port
 EXPOSE 5000
 
+USER node
+
 # Start the app
-CMD ["yarn", "start"]
+# CMD ["yarn", "start"]
